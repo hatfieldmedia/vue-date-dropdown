@@ -1,11 +1,11 @@
 <template>
 	<div :class="[containerClassName]">
 
-		<!-- Day -->
+		<!-- Year -->
 		<div :class="[selectWrapperClassName]">
-			<select v-model="selectedDay" :class="[selectClassName, selectDayClassName]">
-				<option v-for="day in days" :key="day.day" :value="day.day">
-					{{ day.day }}
+			<select v-model="selectedYear" @change="updateDays()" :class="[selectClassName, selectYearClassName]">
+				<option v-for="year in years" :key="year.year" :value="year.year">
+					{{ year.year }}
 				</option>
 			</select>
 		</div>
@@ -19,11 +19,11 @@
 			</select>
 		</div>
 
-		<!-- Year -->
+		<!-- Day -->
 		<div :class="[selectWrapperClassName]">
-			<select v-model="selectedYear" @change="updateDays()" :class="[selectClassName, selectYearClassName]">
-				<option v-for="year in years" :key="year.year" :value="year.year">
-					{{ year.year }}
+			<select v-model="selectedDay" :class="[selectClassName, selectDayClassName]">
+				<option v-for="day in days" :key="day.day" :value="day.day">
+					{{ day.day }}
 				</option>
 			</select>
 		</div>
@@ -139,7 +139,7 @@
 				const day = this.selectedDay >= 10 ? this.selectedDay : `0${this.selectedDay}`
 				const month = this.selectedMonth + 1 >= 10 ? this.selectedMonth + 1 : `0${this.selectedMonth + 1}`
 
-				return `${day}.${month}.${this.selectedYear}`
+				return `${this.selectedYear}-${month}-${day}`
 			},
 
 			// The alternative names of months
